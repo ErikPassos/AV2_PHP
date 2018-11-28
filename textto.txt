@@ -1,0 +1,96 @@
+  <?php 
+error_log(1);
+  if (isset($_POST['publi'])) {
+    if ($_FILES["file"]["error"] > 0) {
+      $texto= $_POST["texto"];
+      $hoje= date("Y-m-d");
+
+        if ($texto == "") {
+          echo "Escreva algo antes de publicar";
+
+        }else{
+         $query = "INSERT INTO posts (post, img, data_post, cod_autor) VALUES('$', '$','', '')";
+          $data= mysql_query($query) or die();
+          if($data){
+            header("Location: ./");
+          }else{
+            echo "Algo deu errado, tente mais tarde!!!!";
+          }
+
+        }
+    }else{
+      $number= rand(0,10000000);
+      $img= $n.$_FILES['file']['name'];
+      move_uploaded_file($_FILES['file']['tmp_name'], "upload/".$img);
+      $texto= $_POST['texto'];
+      $hoje= date("Y-m-d");
+
+      if ($texto == "") {
+        echo "Escreva algo antes de publicar";
+
+      }else{
+        $query = "INSERT INTO posts (post, img, data_post, cod_autor) VALUES('$', '$','', '')";
+        $data= mysql_query($query) or die();
+        if($data){
+          header("Location: ./");
+        }else{
+          echo "Algo deu errado, tente mais tarde!!!!";
+        }
+
+      }
+      
+    }
+  
+  }
+
+
+
+?>
+$hoje= date("Y-m-d");
+$autor= $_POST['id'];
+
+
+"INSERT INTO posts (post, img, data_post, cod_autor) VALUES('$texto', '$img','$hoje', '$autor')";
+
+class="w3-button w3-green"
+
+
+
+
+
+error_log(1);
+session_start();
+  if ($_POST !=NULL) {
+    $post=$_POST["post"];
+    $hoje= date("Y-m-d");
+    $autor= $_SESSION["id"];
+
+    $sql= "INSERT INTO posts (post,data_post, cod_autor) VALUES('$post','$hoje', '$autor')";
+    $retorno = $conexao->query( $sql );
+    // Executou?
+	if ( $retorno == true ) {
+		
+		echo "<script>
+				alert('Postagem efetuada com sucesso');
+				
+			  </script>";
+		
+	// Deu erro..
+	} else {
+
+		echo "<script>
+				alert('ERROOOO!!!!');
+			  </script>";
+		
+		echo $conexao->error;
+		
+	}
+	
+      
+    }
+  
+  <div class="opcoes" align="center">
+   <a href="">Like</a>
+   <a href="">Comentar</a>
+   <a href="">Share</a>
+</div>
